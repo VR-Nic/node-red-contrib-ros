@@ -79,7 +79,7 @@
     RED.nodes.registerType('ros-server',{
         category: 'config',
         defaults: {
-            url: {value:"wss://bennu.magic.ubc.ca:9000/rosws",required:true}
+            url: { value:"ws://localhost:9090/", required:true }
         },
         label: function() {
             return this.url;
