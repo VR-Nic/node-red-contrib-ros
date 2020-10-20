@@ -17,11 +17,13 @@ module.exports = function (RED){
     var trials = 0;
 
     function startconn() {    // Connect to remote endpoint
-      var ros = new ROSLIB.Ros({
-        url : config.url
-      });
-      node.ros = ros; // keep for closing
-      handleConnection(ros);
+      if(!node.ros){
+        var ros = new ROSLIB.Ros({
+          url : config.url
+        });
+        node.ros = ros; // keep for closing
+        handleConnection(ros);
+      }
     }
 
     function handleConnection(ros) {
