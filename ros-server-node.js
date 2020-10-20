@@ -1,6 +1,6 @@
 module.exports = function (RED){
   return function (config) {
-    var ROSLIB = require('roslib'); 
+    var ROSLIB = require('roslib');
 
     RED.nodes.createNode(this,config);
     var node = this;
@@ -28,6 +28,7 @@ module.exports = function (RED){
       ros.on('connection', function() {
       	node.emit('ros connected');
         node.log('connected');
+        if (node.tout) { clearTimeout(node.tout); }
       });
 
       ros.on('error', function(error) {
@@ -53,4 +54,4 @@ module.exports = function (RED){
     startconn();
     node.closing = false;
   }
-}  
+}
