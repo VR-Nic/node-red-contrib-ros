@@ -21,8 +21,8 @@ module.exports = function (RED){
     function startconn() {    // Connect to remote endpoint
       var ros = new ROSLIB.Ros({
         url : config.url,
-        encoding: 'utf8',
-        transportLibrary: 'socket.io'
+        encoding: config.encoding,
+        transportLibrary: config.transportLibrary
       });
       node.ros = ros; // keep for closing
       handleConnection(ros);

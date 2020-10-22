@@ -34,7 +34,7 @@
         defaults: {
             server: {type:"ros-server"},
             topicname: {value: ""},
-            msgtype: {value: "std_msgs/String"} 
+            msgtype: {value: "std_msgs/String"}
         },
         inputs:1,
         outputs:0,
@@ -81,7 +81,9 @@
     RED.nodes.registerType('ros-server',{
         category: 'config',
         defaults: {
-            url: { value:"ws://localhost:9090/", required:true }
+            url: { value:"ws://localhost:9090/", required:true },
+            encoding: { value:"utf8", required:false},
+            transportLibrary: { value:"socket.io", required:false}
         },
         label: function() {
             return this.url;
