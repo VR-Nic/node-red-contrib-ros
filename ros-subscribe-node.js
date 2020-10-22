@@ -1,12 +1,12 @@
 module.exports = function (RED){
   return function (config) {
-    var ROSLIB = require('roslib'); 
+    var ROSLIB = require('roslib');
 
     RED.nodes.createNode(this,config);
     var node = this;
 
     node.server = RED.nodes.getNode(config.server);
-    
+
     if (!node.server || !node.server.ros){
       return;
     }
@@ -30,7 +30,7 @@ module.exports = function (RED){
         ros : node.server.ros,
         name : config.topicname
       });
-      
+
       topicQuery(node.topic);
       node.status({fill:"green",shape:"dot",text:"connected"});
     });
