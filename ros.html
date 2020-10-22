@@ -81,9 +81,9 @@
     RED.nodes.registerType('ros-server',{
         category: 'config',
         defaults: {
-            url: { value:"ws://localhost:9090/", required:true },
-            encoding: { value:"utf8", required:false},
-            transportLibrary: { value:"socket.io", required:false}
+            url: { value:'ws://localhost:9090/', required:true },
+            encoding: { value:'utf8', required:false},
+            transportLibrary: { value:'socket.io', required:false}
         },
         label: function() {
             return this.url;
@@ -93,7 +93,15 @@
 
 <script type="text/x-red" data-template-name="ros-server">
     <div class="form-row">
-        <label for="node-config-input-url"><i class="icon-bookmark"></i> Url</label>
+        <label for="node-config-input-url"><i class="icon-bookmark"></i>URL</label>
         <input type="text" id="node-config-input-url">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-encoding"><i class="icon-bookmark"></i>Encoding</label>
+        <input type="text" id="node-config-input-encoding">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-transportLibrary"><i class="icon-bookmark"></i>Transport Library</label>
+        <input type="text" id="node-config-input-transportLibrary">
     </div>
 </script>
