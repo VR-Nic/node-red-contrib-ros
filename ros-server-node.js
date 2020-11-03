@@ -38,7 +38,7 @@ module.exports = function (RED){
         trials++;
       	node.emit('ros error');
         if (!node.closing) {
-          node.tout = setTimeout(function(){ startconn(); }, Math.pow(2, trials) * 1000);
+          node.tout = setTimeout(function(){ startconn(); }, (2 * trials * 1000));
         }
       });
 
