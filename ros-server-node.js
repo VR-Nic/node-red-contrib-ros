@@ -17,6 +17,7 @@ module.exports = function (RED){
     });
 
     var trials = 0;
+    const maxTrials = 100;
 
     function startconn() {    // Connect to remote endpoint
       var ros = new ROSLIB.Ros({
@@ -38,7 +39,12 @@ module.exports = function (RED){
         trials++;
       	node.emit('ros error');
         if (!node.closing) {
-          node.tout = setTimeout(function(){ startconn(); }, (2 * trials * 1000));
+          if(trials < maxTrials){
+            node.tout = setTimeout(function(){ startconn(); }, (2 * trials * 1000));
+          }
+          else {
+            console.error("Could not connect to ROS endpoint: %s", ros.url);
+          }
         }
       });
 
