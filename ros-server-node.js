@@ -36,14 +36,17 @@ module.exports = function (RED){
       });
 
       ros.on('error', function(error) {
-        trials++;
       	node.emit('ros error');
         if (!node.closing) {
+          trials++;
+
           if(trials < maxTrials){
             node.tout = setTimeout(function(){ startconn(); }, (2 * trials * 1000));
           }
           else {
-            console.error("Could not connect to ROS endpoint: %s", ros.url);
+            console.error("[ERROR] Could not connect to ROS endpoint: %s", node.ros.url);
+
+            node.closing = true;
           }
         }
       });
